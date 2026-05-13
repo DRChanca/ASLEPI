@@ -241,6 +241,11 @@
   <div class="quiz-container" id="wuolahContainer"></div>
 </section>
 
+<section class="quiz-section" aria-labelledby="examenesResueltosTitle">
+  <h2 class="section-title" id="examenesResueltosTitle">Exámenes resueltos</h2>
+  <div class="quiz-container" id="examenesResueltosContainer"></div>
+</section>
+
 <script>
 const preguntatorQuestions = [
   {
@@ -828,6 +833,21 @@ const wuolahQuestions = [
   }
 ];
 
+const examenesResueltosQuestions = [
+  {
+    text: "Además de la LOPD-RGPD, enumera tres leyes que afectan típicamente al ejercicio profesional en informática.",
+    answer: "LSSI-CE, Ley de Propiedad Intelectual (LPI) y Ley de firma electrónica."
+  },
+  {
+    text: "Indica dos de las principales novedades que se introducen en el nuevo Reglamento General de Protección de Datos europeo (RGPD), en comparación con la LOPD.",
+    answer: "Obligación de notificar brechas de seguridad, mayor responsabilidad proactiva (accountability), figura del DPD y sanciones más elevadas."
+  },
+  {
+    text: "¿Dónde se encuentra regulado el Delito Informático?",
+    answer: "Principalmente en el Código Penal español."
+  }
+];
+
 // ── Helpers ──────────────────────────────────────────────────────────────────
 function shuffle(arr) {
   const a = arr.slice();
@@ -841,9 +861,11 @@ function shuffle(arr) {
 // ── State ────────────────────────────────────────────────────────────────────
 let displayPreguntatorQuestions = preguntatorQuestions.slice();
 let displayWuolahQuestions = wuolahQuestions.slice();
+let displayExamenesResueltosQuestions = examenesResueltosQuestions.slice();
 const preguntatorMCTotal = preguntatorQuestions.filter(q => q.options).length;
 const wuolahMCTotal = wuolahQuestions.filter(q => q.options).length;
-const totalMCTotal = preguntatorMCTotal + wuolahMCTotal;
+const examenesResueltosMCTotal = examenesResueltosQuestions.filter(q => q.options).length;
+const totalMCTotal = preguntatorMCTotal + wuolahMCTotal + examenesResueltosMCTotal;
 let scoreCorrect = 0;
 let scoreAnswered = 0;
 let scoreMCTotal = totalMCTotal;
@@ -986,6 +1008,7 @@ function renderQuiz() {
   finalBox.textContent = '';
   renderQuestionSection('preguntatorContainer', 'Preguntator', displayPreguntatorQuestions);
   renderQuestionSection('wuolahContainer', 'Wuolah', displayWuolahQuestions);
+  renderQuestionSection('examenesResueltosContainer', 'Exámenes resueltos', displayExamenesResueltosQuestions);
 }
 
 // ── Shuffle buttons ───────────────────────────────────────────────────────────
@@ -1000,12 +1023,18 @@ document.getElementById('btnShuffleAnswers').addEventListener('click', () => {
     const shuffledOpts = shuffle(q.options);
     return { ...q, options: shuffledOpts };
   });
+  displayExamenesResueltosQuestions = displayExamenesResueltosQuestions.map(q => {
+    if (!q.options) return q;
+    const shuffledOpts = shuffle(q.options);
+    return { ...q, options: shuffledOpts };
+  });
   renderQuiz();
 });
 
 document.getElementById('btnShuffleQuestions').addEventListener('click', () => {
   displayPreguntatorQuestions = shuffle(displayPreguntatorQuestions);
   displayWuolahQuestions = shuffle(displayWuolahQuestions);
+  displayExamenesResueltosQuestions = shuffle(displayExamenesResueltosQuestions);
   renderQuiz();
 });
 
