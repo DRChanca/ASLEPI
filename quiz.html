@@ -6928,14 +6928,14 @@ function shuffle(arr) {
   return a;
 }
 
-function getExamenesSubset() {
+function getAllExamenesQuestions() {
   return examenesResueltosQuestions.slice();
 }
 
 // ── State ────────────────────────────────────────────────────────────────────
 let displayPreguntatorQuestions = preguntatorQuestions.slice();
 let displayWuolahQuestions = wuolahQuestions.slice();
-let displayExamenesResueltosQuestions = getExamenesSubset();
+let displayExamenesResueltosQuestions = getAllExamenesQuestions();
 let activeTest = 'preguntator';
 let scoreCorrect = 0;
 let scoreAnswered = 0;
@@ -7152,7 +7152,7 @@ document.getElementById('btnShuffleQuestions').addEventListener('click', () => {
   if (activeTest === 'wuolah') {
     displayWuolahQuestions = shuffle(displayWuolahQuestions);
   } else if (activeTest === 'examenesResueltos') {
-    displayExamenesResueltosQuestions = getExamenesSubset();
+    displayExamenesResueltosQuestions = getAllExamenesQuestions();
   } else {
     displayPreguntatorQuestions = shuffle(displayPreguntatorQuestions);
   }
