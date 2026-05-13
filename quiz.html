@@ -949,6 +949,7 @@ function shuffle(arr) {
 // ── State ────────────────────────────────────────────────────────────────────
 let displayPreguntatorQuestions = preguntatorQuestions.slice();
 let displayWuolahQuestions = wuolahQuestions.slice();
+// Número de preguntas mostradas por intento en Exámenes resueltos.
 const EXAMENES_SAMPLE_SIZE = 12;
 let displayExamenesResueltosQuestions = shuffle(examenesResueltosQuestions).slice(0, EXAMENES_SAMPLE_SIZE);
 let activeTest = 'preguntator';
