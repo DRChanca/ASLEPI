@@ -946,12 +946,16 @@ function shuffle(arr) {
   return a;
 }
 
+function getExamenesSubset() {
+  return shuffle(examenesResueltosQuestions).slice(0, Math.min(EXAMENES_SAMPLE_SIZE, examenesResueltosQuestions.length));
+}
+
 // ── State ────────────────────────────────────────────────────────────────────
 let displayPreguntatorQuestions = preguntatorQuestions.slice();
 let displayWuolahQuestions = wuolahQuestions.slice();
 // Número de preguntas mostradas por intento en Exámenes resueltos.
 const EXAMENES_SAMPLE_SIZE = 12;
-let displayExamenesResueltosQuestions = shuffle(examenesResueltosQuestions).slice(0, EXAMENES_SAMPLE_SIZE);
+let displayExamenesResueltosQuestions = getExamenesSubset();
 let activeTest = 'preguntator';
 let scoreCorrect = 0;
 let scoreAnswered = 0;
@@ -1168,7 +1172,7 @@ document.getElementById('btnShuffleQuestions').addEventListener('click', () => {
   if (activeTest === 'wuolah') {
     displayWuolahQuestions = shuffle(displayWuolahQuestions);
   } else if (activeTest === 'examenesResueltos') {
-    displayExamenesResueltosQuestions = shuffle(examenesResueltosQuestions).slice(0, EXAMENES_SAMPLE_SIZE);
+    displayExamenesResueltosQuestions = getExamenesSubset();
   } else {
     displayPreguntatorQuestions = shuffle(displayPreguntatorQuestions);
   }
