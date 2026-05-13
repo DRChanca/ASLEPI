@@ -15,15 +15,72 @@
     }
 
     h1 {
-      text-align: center;
-      margin-bottom: 32px;
+      margin-bottom: 20px;
       font-size: 1.8rem;
       color: #1a3a5c;
     }
 
+    .app-layout {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .side-menu {
+      width: 260px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.12);
+      padding: 16px;
+      position: sticky;
+      top: 18px;
+    }
+
+    .menu-title {
+      font-weight: 700;
+      color: #1a3a5c;
+      margin-bottom: 12px;
+    }
+
+    .menu-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .menu-btn {
+      border: 1.5px solid #d0d7e2;
+      border-radius: 8px;
+      background: #f8fbff;
+      padding: 10px 12px;
+      text-align: left;
+      font-weight: 600;
+      color: #1a3a5c;
+      cursor: pointer;
+      transition: background .15s, border-color .15s;
+    }
+
+    .menu-btn:hover {
+      background: #eef3fa;
+      border-color: #90aed4;
+    }
+
+    .menu-btn.active {
+      background: #dbeafe;
+      border-color: #2563eb;
+      color: #1e40af;
+    }
+
+    .main-content {
+      flex: 1;
+      min-width: 0;
+    }
+
     .quiz-container {
       max-width: 820px;
-      margin: 0 auto;
+      margin: 0;
       display: flex;
       flex-direction: column;
       gap: 24px;
@@ -31,8 +88,10 @@
 
     .quiz-section {
       max-width: 820px;
-      margin: 0 auto 28px;
+      margin: 0 0 28px;
     }
+
+    .quiz-section.hidden { display: none; }
 
     .section-title {
       color: #1a3a5c;
@@ -170,7 +229,7 @@
 
     .top-bar {
       max-width: 820px;
-      margin: 0 auto 20px;
+      margin: 0 0 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -201,7 +260,7 @@
 
     .final-score {
       max-width: 820px;
-      margin: 8px auto 24px;
+      margin: 8px 0 24px;
       padding: 18px 24px;
       border-radius: 10px;
       text-align: center;
@@ -213,38 +272,67 @@
     .final-score.great  { background: #d1fae5; color: #065f46; border: 2px solid #059669; }
     .final-score.ok     { background: #fef9c3; color: #713f12; border: 2px solid #ca8a04; }
     .final-score.poor   { background: #fee2e2; color: #7f1d1d; border: 2px solid #dc2626; }
+
+    @media (max-width: 980px) {
+      .app-layout {
+        flex-direction: column;
+      }
+
+      .side-menu {
+        width: 100%;
+        position: static;
+      }
+
+      .menu-buttons {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      }
+    }
   </style>
 </head>
 <body>
 
-<h1>📋 Test ASLEPI</h1>
+<div class="app-layout">
+  <aside class="side-menu" aria-label="Menú de tests">
+    <div class="menu-title">Selecciona un test</div>
+    <div class="menu-buttons" id="sideMenuButtons">
+      <button class="menu-btn active" data-test="preguntator" aria-current="true">Preguntator</button>
+      <button class="menu-btn" data-test="wuolah">Wuolah</button>
+      <button class="menu-btn" data-test="examenesResueltos">ASLEPI Exámenes Resueltos</button>
+    </div>
+  </aside>
 
-<div class="top-bar">
-  <div class="score-display">
-    Puntuación: <span id="scoreCorrect">0</span> / <span id="scoreTotal">0</span>
+  <main class="main-content">
+    <h1>📋 Test ASLEPI</h1>
+
+    <div class="top-bar">
+      <div class="score-display">
+        Puntuación: <span id="scoreCorrect">0</span> / <span id="scoreTotal">0</span>
+      </div>
+      <div class="shuffle-buttons">
+        <button class="btn btn-shuffle" id="btnShuffleAnswers">🔀 Aleatorizar respuestas</button>
+        <button class="btn btn-shuffle" id="btnShuffleQuestions">🔀 Aleatorizar preguntas</button>
+      </div>
+    </div>
+
+    <div class="final-score" id="finalScore"></div>
+
+    <section class="quiz-section" id="preguntatorSection" aria-labelledby="preguntatorTitle">
+      <h2 class="section-title" id="preguntatorTitle">Preguntator</h2>
+      <div class="quiz-container" id="preguntatorContainer"></div>
+    </section>
+
+    <section class="quiz-section hidden" id="wuolahSection" aria-labelledby="wuolahTitle">
+      <h2 class="section-title" id="wuolahTitle">Wuolah</h2>
+      <div class="quiz-container" id="wuolahContainer"></div>
+    </section>
+
+    <section class="quiz-section hidden" id="examenesResueltosSection" aria-labelledby="examenesResueltosTitle">
+      <h2 class="section-title" id="examenesResueltosTitle">Exámenes resueltos</h2>
+      <div class="quiz-container" id="examenesResueltosContainer"></div>
+    </section>
+  </main>
   </div>
-  <div class="shuffle-buttons">
-    <button class="btn btn-shuffle" id="btnShuffleAnswers">🔀 Aleatorizar respuestas</button>
-    <button class="btn btn-shuffle" id="btnShuffleQuestions">🔀 Aleatorizar preguntas</button>
-  </div>
-</div>
-
-<div class="final-score" id="finalScore"></div>
-
-<section class="quiz-section" aria-labelledby="preguntatorTitle">
-  <h2 class="section-title" id="preguntatorTitle">Preguntator</h2>
-  <div class="quiz-container" id="preguntatorContainer"></div>
-</section>
-
-<section class="quiz-section" aria-labelledby="wuolahTitle">
-  <h2 class="section-title" id="wuolahTitle">Wuolah</h2>
-  <div class="quiz-container" id="wuolahContainer"></div>
-</section>
-
-<section class="quiz-section" aria-labelledby="examenesResueltosTitle">
-  <h2 class="section-title" id="examenesResueltosTitle">Exámenes resueltos</h2>
-  <div class="quiz-container" id="examenesResueltosContainer"></div>
-</section>
 
 <script>
 const preguntatorQuestions = [
@@ -861,14 +949,37 @@ function shuffle(arr) {
 // ── State ────────────────────────────────────────────────────────────────────
 let displayPreguntatorQuestions = preguntatorQuestions.slice();
 let displayWuolahQuestions = wuolahQuestions.slice();
-let displayExamenesResueltosQuestions = examenesResueltosQuestions.slice();
-const preguntatorMCTotal = preguntatorQuestions.filter(q => q.options).length;
-const wuolahMCTotal = wuolahQuestions.filter(q => q.options).length;
-const examenesResueltosMCTotal = examenesResueltosQuestions.filter(q => q.options).length;
-const totalMCTotal = preguntatorMCTotal + wuolahMCTotal + examenesResueltosMCTotal;
+const EXAMENES_SAMPLE_SIZE = 12;
+let displayExamenesResueltosQuestions = shuffle(examenesResueltosQuestions).slice(0, EXAMENES_SAMPLE_SIZE);
+let activeTest = 'preguntator';
 let scoreCorrect = 0;
 let scoreAnswered = 0;
-let scoreMCTotal = totalMCTotal;
+let scoreMCTotal = 0;
+
+function getActiveTestMeta() {
+  if (activeTest === 'wuolah') {
+    return {
+      sectionId: 'wuolahSection',
+      containerId: 'wuolahContainer',
+      sectionName: 'Wuolah',
+      questions: displayWuolahQuestions
+    };
+  }
+  if (activeTest === 'examenesResueltos') {
+    return {
+      sectionId: 'examenesResueltosSection',
+      containerId: 'examenesResueltosContainer',
+      sectionName: 'Exámenes resueltos',
+      questions: displayExamenesResueltosQuestions
+    };
+  }
+  return {
+    sectionId: 'preguntatorSection',
+    containerId: 'preguntatorContainer',
+    sectionName: 'Preguntator',
+    questions: displayPreguntatorQuestions
+  };
+}
 
 function updateScoreBar() {
   document.getElementById('scoreCorrect').textContent = scoreCorrect;
@@ -999,42 +1110,67 @@ function renderQuestionSection(containerId, sectionName, questionsList) {
 }
 
 function renderQuiz() {
+  const activeMeta = getActiveTestMeta();
   scoreCorrect = 0;
   scoreAnswered = 0;
+  scoreMCTotal = activeMeta.questions.filter(q => q.options).length;
   updateScoreBar();
 
   const finalBox = document.getElementById('finalScore');
   finalBox.className = 'final-score';
   finalBox.textContent = '';
-  renderQuestionSection('preguntatorContainer', 'Preguntator', displayPreguntatorQuestions);
-  renderQuestionSection('wuolahContainer', 'Wuolah', displayWuolahQuestions);
-  renderQuestionSection('examenesResueltosContainer', 'Exámenes resueltos', displayExamenesResueltosQuestions);
+
+  ['preguntatorSection', 'wuolahSection', 'examenesResueltosSection'].forEach(sectionId => {
+    const section = document.getElementById(sectionId);
+    section.classList.toggle('hidden', sectionId !== activeMeta.sectionId);
+  });
+
+  renderQuestionSection(activeMeta.containerId, activeMeta.sectionName, activeMeta.questions);
 }
+
+function updateMenuSelection() {
+  document.querySelectorAll('#sideMenuButtons .menu-btn').forEach(btn => {
+    const isActive = btn.dataset.test === activeTest;
+    btn.classList.toggle('active', isActive);
+    btn.setAttribute('aria-current', isActive ? 'true' : 'false');
+  });
+}
+
+document.querySelectorAll('#sideMenuButtons .menu-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    if (activeTest === btn.dataset.test) return;
+    activeTest = btn.dataset.test;
+    updateMenuSelection();
+    renderQuiz();
+  });
+});
 
 // ── Shuffle buttons ───────────────────────────────────────────────────────────
 document.getElementById('btnShuffleAnswers').addEventListener('click', () => {
-  displayPreguntatorQuestions = displayPreguntatorQuestions.map(q => {
+  const shuffleOptionsForTest = (questions) => questions.map(q => {
     if (!q.options) return q;
     const shuffledOpts = shuffle(q.options);
     return { ...q, options: shuffledOpts };
   });
-  displayWuolahQuestions = displayWuolahQuestions.map(q => {
-    if (!q.options) return q;
-    const shuffledOpts = shuffle(q.options);
-    return { ...q, options: shuffledOpts };
-  });
-  displayExamenesResueltosQuestions = displayExamenesResueltosQuestions.map(q => {
-    if (!q.options) return q;
-    const shuffledOpts = shuffle(q.options);
-    return { ...q, options: shuffledOpts };
-  });
+
+  if (activeTest === 'wuolah') {
+    displayWuolahQuestions = shuffleOptionsForTest(displayWuolahQuestions);
+  } else if (activeTest === 'examenesResueltos') {
+    displayExamenesResueltosQuestions = shuffleOptionsForTest(displayExamenesResueltosQuestions);
+  } else {
+    displayPreguntatorQuestions = shuffleOptionsForTest(displayPreguntatorQuestions);
+  }
   renderQuiz();
 });
 
 document.getElementById('btnShuffleQuestions').addEventListener('click', () => {
-  displayPreguntatorQuestions = shuffle(displayPreguntatorQuestions);
-  displayWuolahQuestions = shuffle(displayWuolahQuestions);
-  displayExamenesResueltosQuestions = shuffle(displayExamenesResueltosQuestions);
+  if (activeTest === 'wuolah') {
+    displayWuolahQuestions = shuffle(displayWuolahQuestions);
+  } else if (activeTest === 'examenesResueltos') {
+    displayExamenesResueltosQuestions = shuffle(examenesResueltosQuestions).slice(0, EXAMENES_SAMPLE_SIZE);
+  } else {
+    displayPreguntatorQuestions = shuffle(displayPreguntatorQuestions);
+  }
   renderQuiz();
 });
 
