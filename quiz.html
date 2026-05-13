@@ -6928,6 +6928,21 @@ function shuffle(arr) {
   return a;
 }
 
+
+function deleteRepeated(arr){
+  const seen = []; 
+  for(let i = arr.length - 1; i >= 0; i--){
+    const q = arr[i];
+    const key = q.text.trim().toLowerCase();
+    if(seen.some((item) => item.text.trim().toLowerCase() == key )){
+      
+    } else {
+      seen.push(q);
+    }
+  }
+  return seen;
+
+}
 // ── State ────────────────────────────────────────────────────────────────────
 let displayPreguntatorQuestions = preguntatorQuestions.slice();
 let displayWuolahQuestions = wuolahQuestions.slice();
@@ -6951,7 +6966,7 @@ function getActiveTestMeta() {
       sectionId: 'examenesResueltosSection',
       containerId: 'examenesResueltosContainer',
       sectionName: 'Exámenes resueltos',
-      questions: currentExamenesResueltosQuestions
+      questions: deleteRepeated(examenesResueltosQuestions)
     };
   }
   return {
@@ -7101,6 +7116,8 @@ function renderQuiz() {
   finalBox.className = 'final-score';
   finalBox.textContent = '';
 
+
+  
   ['preguntatorSection', 'wuolahSection', 'examenesResueltosSection'].forEach(sectionId => {
     const section = document.getElementById(sectionId);
     section.classList.toggle('hidden', sectionId !== activeMeta.sectionId);
