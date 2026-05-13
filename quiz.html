@@ -923,16 +923,214 @@ const wuolahQuestions = [
 
 const examenesResueltosQuestions = [
   {
-    text: "Además de la LOPD-RGPD, enumera tres leyes que afectan típicamente al ejercicio profesional en informática.",
-    answer: "LSSI-CE, Ley de Propiedad Intelectual (LPI) y Ley de firma electrónica."
+    text: "En la actual Ley de Propiedad Intelectual",
+    options: [
+      { label: "a", text: "Ninguna de las otras es correcta" },
+      { label: "b", text: "Se amplía del derecho de copia privada a los programas de ordenador" },
+      { label: "c", text: "Se permite hacer copias de obras divulgadas con el fin de venderlas comercialmente" },
+      { label: "d", text: "La memorización de una canción conlleva el pago de un canon a las entidades de gestión" }
+    ],
+    correct: "a"
   },
   {
-    text: "Indica dos de las principales novedades que se introducen en el nuevo Reglamento General de Protección de Datos europeo (RGPD), en comparación con la LOPD.",
-    answer: "Obligación de notificar brechas de seguridad, mayor responsabilidad proactiva (accountability), figura del DPD y sanciones más elevadas."
+    text: "El registro de actividades del tratamiento de la RGPD",
+    options: [
+      { label: "a", text: "Es obligatorio en todos los casos" },
+      { label: "b", text: "Debe guardarse bajo supervisión directa del Delegado de Protección de Datos" },
+      { label: "c", text: "Ninguna de las otras es correcta" },
+      { label: "d", text: "Debe hacerse público, por ejemplo en la página web de la empresa" }
+    ],
+    correct: "c"
   },
   {
-    text: "¿Dónde se encuentra regulado el Delito Informático?",
-    answer: "Principalmente en el Código Penal español."
+    text: "El Delegado de Protección de Datos de la RGPD",
+    options: [
+      { label: "a", text: "Tiene que tener obligatoriamente la titulación de Licenciado en Derecho, al menos" },
+      { label: "b", text: "Tiene que tener obligatoriamente la titulación de Graduado en Ingeniería Informática, al menos" },
+      { label: "c", text: "Es una figura obligatoria para todas las entidades de la administración pública" },
+      { label: "d", text: "Ninguna de las otras es correcta" }
+    ],
+    correct: "c"
+  },
+  {
+    text: "La Ley de Propiedad Intelectual, para los programas de ordenador permite sin necesitar consentimiento del titular (en ocasiones con condiciones adicionales)",
+    options: [
+      { label: "a", text: "Hacer todas las copias de seguridad del programa que sean necesarias" },
+      { label: "b", text: "Modificar el programa y redistribuirlo (incluso mediando contraprestación económica)" },
+      { label: "c", text: "Ampliar la funcionalidad del programa" },
+      { label: "d", text: "Ninguna de las otras es correcta" }
+    ],
+    correct: "d"
+  },
+  {
+    text: "Las sanciones en el nuevo Reglamento General de Protección de Datos europeo (RGPD) pueden alcanzar hasta",
+    options: [
+      { label: "a", text: "20 millones de euros" },
+      { label: "b", text: "2 millones de euros" },
+      { label: "c", text: "1 millón de euros" },
+      { label: "d", text: "2.000 millones de euros" }
+    ],
+    correct: "a"
+  },
+  {
+    text: "Una licencia válida Creative Commons puede ser",
+    options: [
+      { label: "a", text: "CC BY-SA" },
+      { label: "b", text: "CC NC-ND" },
+      { label: "c", text: "CC BY-NC-ND-SA" },
+      { label: "d", text: "CC BY-2020" }
+    ],
+    correct: "a"
+  },
+  {
+    text: "Una licencia válida Creative Commons puede ser",
+    options: [
+      { label: "a", text: "CC BY-NC" },
+      { label: "b", text: "CC BY-2018" },
+      { label: "c", text: "CC BY-NC-ND-SA" },
+      { label: "d", text: "CC NC-SA" }
+    ],
+    correct: "a"
+  },
+  {
+    text: "Un fichero de datos personales de la LOPD / actividad de tratamiento, se corresponde siempre con",
+    options: [
+      { label: "a", text: "Ninguna de las otras es correcta" },
+      { label: "b", text: "La base de datos completa en la que se almacenan los datos en cuestión" },
+      { label: "c", text: "Un fichero informático de la aplicación que gestiona los datos en cuestión" },
+      { label: "d", text: "Una tabla de la base de datos en la que se almacenan los datos en cuestión" }
+    ],
+    correct: "a"
+  },
+  {
+    text: "El consumo eléctrico de un ordenador PC típico, en el contexto del gasto energético de una empresa",
+    options: [
+      { label: "a", text: "Es poco apreciable, y comparable al de una bombilla, por lo que no compensa su consideración" },
+      { label: "b", text: "No es una cuestión que competa a los Ingenieros Técnicos en Informática" },
+      { label: "c", text: "Puede llegar a ser un gasto considerable, especialmente si está encendido gran parte del día" },
+      { label: "d", text: "Ninguna de las otras es correcta" }
+    ],
+    correct: "c"
+  },
+  {
+    text: "Un fichero de datos personales en papel",
+    options: [
+      { label: "a", text: "No está sujeto a la LOPD-RGPD" },
+      { label: "b", text: "Está sujeto a la LOPD-RGPD solo si contiene datos de personas jurídicas" },
+      { label: "c", text: "Está sujeto a la LOPD-RGPD solo si contiene datos de categoría especial (nivel alto en el RMS 2007)" },
+      { label: "d", text: "Está sujeto a la LOPD-RGPD siempre" }
+    ],
+    correct: "d"
+  },
+  {
+    text: "Una empresa que recopile nombres y direcciones de personas a partir de una guía de teléfonos",
+    options: [
+      { label: "a", text: "No está afectada por la LOPD-RGPD pues los datos son públicos" },
+      { label: "b", text: "Ninguna de las otras es correcta" },
+      { label: "c", text: "No le afecta la LOPD-RGPD pues los datos son referidos a personas físicas" },
+      { label: "d", text: "Le afecta la LOPD-RGPD, pero no tiene obligación de implantar medidas de seguridad" }
+    ],
+    correct: "b"
+  },
+  {
+    text: "La duración de los derechos de autor (individual) en la ley de propiedad intelectual es",
+    options: [
+      { label: "a", text: "Indefinida" },
+      { label: "b", text: "10 años desde la muerte del autor" },
+      { label: "c", text: "80 años desde la muerte del autor" },
+      { label: "d", text: "70 años desde la muerte del autor" }
+    ],
+    correct: "d"
+  },
+  {
+    text: "Según el reglamento de medidas de seguridad (2007), un dato de nivel básico obligatoriamente debe",
+    options: [
+      { label: "a", text: "Eliminarse del fichero de datos, pues no está autorizado su registro" },
+      { label: "b", text: "Notificarse a la Agencia de Protección de datos cada modificación que sufra" },
+      { label: "c", text: "Cifrarse para su envío por medios telemáticos" },
+      { label: "d", text: "Hacerse copia de seguridad al menos semanalmente" }
+    ],
+    correct: "d"
+  },
+  {
+    text: "¿A quién corresponde la vigilancia de la ética y deontología profesional en el ejercicio profesional de la Ingeniería Técnica en Informática?",
+    options: [
+      { label: "a", text: "Asociación de Técnicos en Informática" },
+      { label: "b", text: "Ninguna de las otras es correcta" },
+      { label: "c", text: "Colegio Profesional de Ingenieros Técnicos en Informática" },
+      { label: "d", text: "Ministerio de Justicia" }
+    ],
+    correct: "c"
+  },
+  {
+    text: "Según el reglamento de medidas de seguridad (2007), en una base de datos de una asociación, el dato del número de cuenta para cobrar las cuotas es de",
+    options: [
+      { label: "a", text: "Nivel alto" },
+      { label: "b", text: "Nivel medio" },
+      { label: "c", text: "Tipo especialmente protegido" },
+      { label: "d", text: "Nivel básico" }
+    ],
+    correct: "d"
+  },
+  {
+    text: "La duración de los derechos de autor (individual) en la ley de propiedad intelectual es",
+    options: [
+      { label: "a", text: "Indefinida" },
+      { label: "b", text: "50 años desde la muerte del autor" },
+      { label: "c", text: "80 años desde la muerte del autor" },
+      { label: "d", text: "Ninguna de las otras es correcta" }
+    ],
+    correct: "d"
+  },
+  {
+    text: "Una licencia válida Creative Commons puede ser",
+    options: [
+      { label: "a", text: "CC BY-NC-ND" },
+      { label: "b", text: "CC BY-2020" },
+      { label: "c", text: "CC NC-SA" },
+      { label: "d", text: "CC BY-NN" }
+    ],
+    correct: "a"
+  },
+  {
+    text: "La Ley de Propiedad Intelectual, para los programas de ordenador permite sin necesitar consentimiento del titular (en ocasiones con condiciones adicionales)",
+    options: [
+      { label: "a", text: "Alquilar el programa" },
+      { label: "b", text: "Modificar el programa y redistribuirlo (incluso mediando contraprestación económica)" },
+      { label: "c", text: "Ampliar la funcionalidad del programa" },
+      { label: "d", text: "Hacer un máximo de 1 copia de seguridad del programa" }
+    ],
+    correct: "d"
+  },
+  {
+    text: "El Delegado de Protección de Datos de la RGPD",
+    options: [
+      { label: "a", text: "Es una figura obligatoria para todas las empresas" },
+      { label: "b", text: "Tiene que tener obligatoriamente la titulación de Licenciado en Derecho, al menos" },
+      { label: "c", text: "Ninguna de las otras es correcta" },
+      { label: "d", text: "Tiene que tener obligatoriamente la titulación de Graduado en Ingeniería Informática, al menos" }
+    ],
+    correct: "c"
+  },
+  {
+    text: "¿A quién corresponde la vigilancia de la ética y deontología profesional en el ejercicio profesional de la Ingeniería Técnica en Informática?",
+    options: [
+      { label: "a", text: "Asociación de Técnicos en Informática" },
+      { label: "b", text: "ACM/IEEE" },
+      { label: "c", text: "Colegio Profesional de Ingenieros Técnicos en Informática" },
+      { label: "d", text: "Ministerio de Industria" }
+    ],
+    correct: "c"
+  },
+  {
+    text: "El registro de actividades del tratamiento de la RGPD",
+    options: [
+      { label: "a", text: "Es obligatorio en todos los casos" },
+      { label: "b", text: "Debe guardarse en papel, al menos una copia" },
+      { label: "c", text: "Ninguna de las otras es correcta" },
+      { label: "d", text: "Debe comunicarse a la Agencia de Protección de Datos para que se registre" }
+    ],
+    correct: "c"
   }
 ];
 
