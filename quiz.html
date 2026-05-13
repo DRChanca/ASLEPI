@@ -843,9 +843,10 @@ let displayPreguntatorQuestions = preguntatorQuestions.slice();
 let displayWuolahQuestions = wuolahQuestions.slice();
 const preguntatorMCTotal = preguntatorQuestions.filter(q => q.options).length;
 const wuolahMCTotal = wuolahQuestions.filter(q => q.options).length;
+const totalMCTotal = preguntatorMCTotal + wuolahMCTotal;
 let scoreCorrect = 0;
 let scoreAnswered = 0;
-let scoreMCTotal = 0;
+let scoreMCTotal = totalMCTotal;
 
 function updateScoreBar() {
   document.getElementById('scoreCorrect').textContent = scoreCorrect;
@@ -866,7 +867,7 @@ function checkFinished() {
 }
 
 // ── Build DOM ────────────────────────────────────────────────────────────────
-function renderQuestionSection(containerId, sectionName, sectionPrefix, questionsList) {
+function renderQuestionSection(containerId, sectionName, questionsList) {
   const container = document.getElementById(containerId);
   container.innerHTML = '';
 
@@ -876,7 +877,7 @@ function renderQuestionSection(containerId, sectionName, sectionPrefix, question
 
     const num = document.createElement('div');
     num.className = 'question-number';
-    num.textContent = `Pregunta ${sectionPrefix}${idx + 1} de ${questionsList.length} · ${sectionName}`;
+    num.textContent = `Pregunta ${idx + 1} de ${questionsList.length} · ${sectionName}`;
     card.appendChild(num);
 
     const qtxt = document.createElement('div');
@@ -978,14 +979,13 @@ function renderQuestionSection(containerId, sectionName, sectionPrefix, question
 function renderQuiz() {
   scoreCorrect = 0;
   scoreAnswered = 0;
-  scoreMCTotal = preguntatorMCTotal + wuolahMCTotal;
   updateScoreBar();
 
   const finalBox = document.getElementById('finalScore');
   finalBox.className = 'final-score';
   finalBox.textContent = '';
-  renderQuestionSection('preguntatorContainer', 'Preguntator', 'P', displayPreguntatorQuestions);
-  renderQuestionSection('wuolahContainer', 'Wuolah', 'W', displayWuolahQuestions);
+  renderQuestionSection('preguntatorContainer', 'Preguntator', displayPreguntatorQuestions);
+  renderQuestionSection('wuolahContainer', 'Wuolah', displayWuolahQuestions);
 }
 
 // ── Shuffle buttons ───────────────────────────────────────────────────────────
